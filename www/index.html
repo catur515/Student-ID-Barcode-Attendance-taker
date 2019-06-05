@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta http-equiv="Content-Security-Policy" content="default-src *; style-src 'self' 'unsafe-inline';">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="msapplication-tap-highlight" content="no">
+    <meta name="viewport" content="initial-scale=1, width=device-width, viewport-fit=cover">
+    <link rel="stylesheet" type="text/css" href="css/materialize.css">
+    <!-- app title -->
+    <title></title>
+    <script type="text/javascript" src="cordova.js"></script>
+</head>
+
+<body>
+    <div class="container">
+        <div class="section">
+            <div class="row">
+                <div class="col s4 offset-s4">
+                    <img class="responsive-img" src="img/logo.jpg">
+                </div>
+            </div>
+        </div>
+            <div class="row center-align">
+                <p>Admin ID <span id="adminid"></span></p>
+                <button class="waves-effect waves-light btn" id="logout">Logout</button>
+            </div>
+            <div class="row center-align">
+                <p><span id='date'></span>&nbsp;<span id='time'></span></p>
+            </div>
+        <div class="section">
+            <div class="row center-align">
+                <div class="input-field col s12">
+                    <input disabled placeholder="Scan attendee's card" id="cardid" type="text" class="validate">
+                    <label for="cardid">Card ID</label>
+                </div>
+            </div>
+            <div class="row center-align">
+                <div class="col s12">
+                    <button class="waves-effect waves-light btn" id="scanstudent">Scan</button>
+                    <button class="waves-effect waves-light btn" id="clearstudent">Clear attendee id</button>
+                </div>
+            </div>
+            <div class="row center-align">
+                <button class="waves-effect waves-light btn" id="submit">Submit</button>
+            </div>
+        </div>
+    </div>
+    <!-- Modal Structure -->
+    <div id="modal1" class="modal">
+        <div class="modal-content">
+            <div class="input-field col s12">
+                <input disabled placeholder="Scan admin id" id="modaladminid" type="text">
+            </div>
+            <button class="waves-effect waves-light btn" id="scanadmin">Scan</button>
+            <div class="input-field col s12">
+                <input placeholder="Enter code" id="pw" type="text" required>
+            </div>
+            <div id="error"></div>
+        </div>
+        <div class="modal-footer">
+            <a href="#!" class="waves-effect waves-green btn-flat" id="loginbtn">Login</a>
+        </div>
+    </div>
+    <script type="text/javascript" src="js/materialize.min.js"></script>
+    <script type="text/javascript" src="js/index.js"></script>
+</body>
+
+</html>
