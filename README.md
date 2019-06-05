@@ -10,8 +10,8 @@
 ### Setup Instructions
 	
 #### Google Drive/Spreadsheet
-1. Create a spreadsheet identical to [Attendance](/attendance.xlsx){:target="_blank"} on Google Spreadsheet.  The columns and sheets arrangement must be the same.
-2. Go to *Tools > Script Editor* and paste the [Google Script](/googlescripts.gs){:target="_blank"}
+1. Create a spreadsheet identical to [Attendance](/attendance.xlsx) on Google Spreadsheet.  The columns and sheets arrangement must be the same.
+2. Go to *Tools > Script Editor* and paste the [Google Script](/googlescripts.gs)
 3. Refresh G Spreadsheet and a menu item named "Manage Data" will appear at the end of the menu bar after it is loaded.
 4. Refer to the commented lines in the script for each function.
 5. Prefill student ID, card ID and student Name prior starting to use the app.
