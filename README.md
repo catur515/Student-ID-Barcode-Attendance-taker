@@ -50,7 +50,7 @@ Read the commented lines and update the password and webhook URL. Also check for
 
 **Example live app**
 
-- [NPTaekwondoAttendance](https://play.google.com/store/apps/details?id=com.codeweb.NPTaekwondoAttendance){:target="_blank"}
+- [NPTaekwondoAttendance](https://play.google.com/store/apps/details?id=com.codeweb.NPTaekwondoAttendance)
 
 
 
