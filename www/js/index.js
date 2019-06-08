@@ -26,14 +26,19 @@ function modal() {
 }
 
 function login() {
-    // hard coded attendance passcode
-    if (document.getElementById("pw").value == "<fill-in>") {
-        var elems = document.getElementById('modal1');
-        var instance = M.Modal.getInstance(elems);
-        instance.close();
-        document.getElementById("scanstudent").disabled = false;
+    var adminid = document.getElementById("modaladminid").value;
+    if (adminid != "") {
+            // hard coded attendance passcode
+        if (document.getElementById("pw").value == <fill passcode>) {
+            var elems = document.getElementById('modal1');
+            var instance = M.Modal.getInstance(elems);
+            instance.close();
+            document.getElementById("scanstudent").disabled = false;
+        } else {
+            document.getElementById('error').innerText = "Wrong code";
+        }
     } else {
-        document.getElementById('error').innerText = "Wrong code";
+        document.getElementById('error').innerText = "Fill in admin id";
     }
 }
 
