@@ -2,7 +2,7 @@
 
 function onOpen(){
   SpreadsheetApp.getUi().createMenu('Manage Data')
-  .addItem('Update Log to Tracker', 'updateTracker')
+  .addItem('Update Log to Tracker', 'formatlogtotext')
   .addItem('Delete `checked` rows in Log', 'removecheckedlog')
   .addItem('Remove Empty Rows & Columns in Tracker', 'removeEmptyTracker')
   .addItem('Remove Empty Rows & Columns in Log', 'removeEmptyLog')
@@ -10,25 +10,24 @@ function onOpen(){
 }
 
 function updateTracker() {
-  formatlogtotext();
   var logsheet = SpreadsheetApp.getActiveSpreadsheet().getSheets()[0];
   var data = logsheet.getDataRange().getValues();
   var trackersheet = SpreadsheetApp.getActiveSpreadsheet().getSheetByName('Tracker');
   var headerrow = trackersheet.getRange(1, 1, 1, trackersheet.getMaxColumns()); 
-  var cardidcol = trackersheet.getRange(1, 3, trackersheet.getMaxRows(), 1);
+  var cardidcol = trackersheet.getRange(2, 3, trackersheet.getMaxRows(), 1);
 
-  for (var i = 0; i < data.length; i++) {
+  for (var i = 1; i < data.length; i++) {
     //  [0] cardid, [1] date, [2] adminid, [3] datetime, [4] status
     var cardid = data[i][0];
     var date = data[i][1];
-    var statuschecked = data[i][3];
+    var statuschecked = data[i][4];
     if (statuschecked != "checked"){
       //find card row
       var cardidfinder = cardidcol.createTextFinder(cardid).matchEntireCell(true).findNext();
       if (cardidfinder != null){
          var idrow = cardidfinder.getRow();
         //find date col
-        var datecol = headerrow.createTextFinder(date).findNext().getColumn();
+        var datecol = headerrow.createTextFinder(date).matchEntireCell(true).findNext().getColumn();
         //update cell to present
         trackersheet.getRange(idrow, datecol).setValue('Y');
         //update log to checked
@@ -87,9 +86,10 @@ if (maxRows-lastRow != 0){
 //format all cells to text to ensure able to search
 function formatlogtotext(){
   var logsheet = SpreadsheetApp.getActiveSpreadsheet().getSheets()[0];
-  logsheet.getRange(logsheet.getMaxRows(), logsheet.getMaxColumns()).setNumberFormat('@'); 
+  logsheet.getRange(1, 1, logsheet.getMaxRows(), logsheet.getMaxColumns()).setNumberFormat('@STRING@'); 
   
   var trackersheet = SpreadsheetApp.getActiveSpreadsheet().getSheetByName('Tracker');
-  trackersheet.getRange('1:1').setNumberFormat('@'); 
-  trackersheet.getRange('A:C').setNumberFormat('@'); 
+  trackersheet.getRange('1:1').setNumberFormat('@STRING@'); 
+  trackersheet.getRange('A:C').setNumberFormat('@STRING@'); 
+  updateTracker();
 }
