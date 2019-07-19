@@ -27,11 +27,18 @@ function updateTracker() {
       if (cardidfinder != null){
          var idrow = cardidfinder.getRow();
         //find date col
-        var datecol = headerrow.createTextFinder(date).matchEntireCell(true).findNext().getColumn();
-        //update cell to present
-        trackersheet.getRange(idrow, datecol).setValue('Y');
-        //update log to checked
-        logsheet.getRange(i+1, 5).setValue('checked');
+        var checkdatecol = headerrow.createTextFinder(date).matchEntireCell(true).findNext();
+        if (checkdatecol != null){
+         var datecol = checkdatecol.getColumn();
+         //update cell to present
+         trackersheet.getRange(idrow, datecol).setValue('Y');
+         //update log to checked
+         logsheet.getRange(i+1, 5).setValue('checked');
+        } else {
+          //invalid date found. alert pop up before continuing
+          var ui =  SpreadsheetApp.getUi();
+          ui.alert('Invalid date detected at column B of check-in log either at the first or after the checked row. \nPlease check and update before continuing.');
+        }
       } else {
         //if card id not found in tracker sheet then stop
         var ui =  SpreadsheetApp.getUi();
