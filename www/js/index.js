@@ -115,29 +115,40 @@ function submit() {
     var cardid = document.getElementById("cardid").value;
     var currentdatestring = document.getElementById("date").innerText;
     var adminid = document.getElementById("adminid").innerText;
-    var data = JSON.stringify({
-        "value1": cardid,
-        "value2": currentdatestring,
-        "value3": adminid,
-    })
+    // var data = JSON.stringify({
+    //     "value1": cardid,
+    //     "value2": currentdatestring,
+    //     "value3": adminid,
+    // })
 
-    const request = new XMLHttpRequest();
-    request.addEventListener('load', function () {
-        if (this.readyState === 4 && this.status === 200) {
-            //display success text and auto dismiss in 2s
-            M.toast({
-                html: cardid + " attendance is checked.",
-                displayLength: 1000
-            });
-            //flush sutdent details
-            clearStudent();
-        }
-    });
+    // const request = new XMLHttpRequest();
+    // request.addEventListener('load', function () {
+    //     if (this.readyState === 4 && this.status === 200) {
+    //         //display success text and auto dismiss in 2s
+    //         M.toast({
+    //             html: cardid + " attendance is checked.",
+    //             displayLength: 1000
+    //         });
+    //         //flush sutdent details
+    //         clearStudent();
+    //     }
+    // });
 
     // replace placeholder with your IFTTT webhook link
-    request.open('POST', '<placeholder>', true);
-    request.setRequestHeader('Content-Type', 'application/json');
-    request.send(data);
+    // request.open('POST', 'https://maker.ifttt.com/trigger/add_check_in/with/key/cEgRwIbOZ7F3AZuf1FVJjB', true);
+    // request.setRequestHeader('Content-Type', 'application/jsonp');
+    // request.send(data);
+    $.ajax({
+        type: 'POST',
+        url: 'https://maker.ifttt.com/trigger/add_check_in/with/key/cEgRwIbOZ7F3AZuf1FVJjB',
+        data: {
+            "value1": cardid,
+            "value2": currentdatestring,
+            "value3": adminid,
+        },
+        contentType: "application/json",
+        dataType: 'jsonp'
+    });
 }
 
 function timeDisplay() {
